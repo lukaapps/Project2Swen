@@ -239,7 +239,7 @@ public class Pasur
                     List<Card> poolCards = poolHand.getCardList();
                     if(!poolCards.isEmpty())
                         System.out.println(lastPlayerWhoPickedAcard + " picks " + toString(poolCards) + " at the end of this round of game");
-
+                        System.out.println(lastPlayerWhoPickedAcard + "has" + lastPlayerWhoPickedAcard.getPickedCards().toString());
                     cardList.clear();
                     for(int i = 0; i < poolCards.size(); i++)
                     {

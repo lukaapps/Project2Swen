@@ -14,6 +14,7 @@ public abstract class Player
     private static final int TARGET_VALUE = 11;
 
     protected int id;
+    protected int score;
     protected Hand hand;
     protected Hand pickedCards;
     protected Hand surs;
@@ -103,6 +104,7 @@ public abstract class Player
 
     protected Set<Card> chooseBestCandidateSetToPick(List<Set<Card>> candidateSetsOfCardsToPick)
     {
+        System.out.println(getPickedCards());
         double valueGivenTo10ofDiamond = 3;
         double valueGivenTo2ofClubs = 2;
         double valueGivenToAce = 1;
