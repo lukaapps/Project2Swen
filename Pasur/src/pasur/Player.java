@@ -22,6 +22,7 @@ public abstract class Player
     protected Player(int id)
     {
         this.id = id;
+        initialiseScore();
     }
 
     /**
@@ -231,9 +232,13 @@ public abstract class Player
         return "Player" + id;
     }
 
+    public void initialiseScore(){
+        this.score = 0;
+    }
+
     public int getScore()
     {
-        return 0;
+        return this.score;
     }
 
     abstract Card selectToPlay();

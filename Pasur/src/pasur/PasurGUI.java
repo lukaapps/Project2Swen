@@ -270,6 +270,8 @@ public class PasurGUI implements PropertyChangeListener
 
             cardHand.setTargetArea(hand.getTargetArea());
 
+
+
             if(animate)
             {
                 AtomicInteger targetCount = new AtomicInteger(0);

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 public class Pasur
 {
+    ScoreStrategy scoreStrategy = new ScoreStrategy();
     public static final String VERSION = "1.0";
     public static final String ON_RESET = "onReset";
     public static final String ON_UPDATE_SCORE = "onUpdateScore";
@@ -38,6 +39,7 @@ public class Pasur
     private Hand deckHand;
     private final Hand poolHand;
     private final Player[] players;
+
 
     private PropertyChangeSupport propertyChangePublisher = new PropertyChangeSupport(this);
 
@@ -346,8 +348,11 @@ public class Pasur
     private void updateScores()
     {
         String scoreString = "";
+        scoreStrategy.updatePlayerScore(players);
+
         for (int i = 0; i < nPlayers; i++)
         {
+
             if(i != 0)
                 scoreString += "        ";
 
