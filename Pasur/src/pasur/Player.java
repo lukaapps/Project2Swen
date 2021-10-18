@@ -15,14 +15,19 @@ public abstract class Player
 
     protected int id;
     protected int score;
+    protected int roundScore;
+    protected int rollScore;
     protected Hand hand;
     protected Hand pickedCards;
     protected Hand surs;
+    protected int surCount;
+    protected int clubCount;
 
     protected Player(int id)
     {
         this.id = id;
-        initialiseScore();
+        setClubCount();
+        setSurCount();
     }
 
     /**
@@ -189,6 +194,13 @@ public abstract class Player
             _findSetsOfCardsSummingToTarget(remainingCards, setsOfCards, targetValue, partialCards);
         }
     }
+    public void setClubCount(){
+        this.clubCount = 0;
+    }
+
+    public int getClubCount(){
+        return clubCount;
+    }
 
     public Hand getHand()
     {
@@ -225,6 +237,7 @@ public abstract class Player
         hand.removeAll(false);
         pickedCards.removeAll(false);
         surs.removeAll(false);
+        this.roundScore = 0;
     }
 
     public String toString()
@@ -232,8 +245,14 @@ public abstract class Player
         return "Player" + id;
     }
 
-    public void initialiseScore(){
-        this.score = 0;
+//    public void initialiseScore(){
+//        this.score = 0;
+//    }
+
+    public void setScore(int newScore){
+        roundScore = newScore;
+        this.rollScore += roundScore - rollScore;
+        this.score = rollScore;
     }
 
     public int getScore()
@@ -241,5 +260,13 @@ public abstract class Player
         return this.score;
     }
 
+    public void setRoundScore(int rScore){
+        this.roundScore = rScore;
+    }
+
     abstract Card selectToPlay();
+
+    public void setSurCount(){
+        surCount = 0;
+    }
 }
