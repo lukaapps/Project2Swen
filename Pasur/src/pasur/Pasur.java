@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class Pasur
 {
     ScoreStrategy scoreStrategy = new ScoreStrategy();
+    Scoring scoring = new Scoring();
     public static final String VERSION = "1.0";
     public static final String ON_RESET = "onReset";
     public static final String ON_UPDATE_SCORE = "onUpdateScore";
@@ -359,8 +360,7 @@ public class Pasur
             Player player = players[i];
             scoreString += player.toString() + " = " + player.getScore() + " (" + player.getSurs().getNumberOfCards() + " Surs)";
         }
-
-        propertyChangePublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);
+        scoring.setValue(scoreString);
 //        scoreLabel.setText(scoreString);
         System.out.println("Total Running Scores: " + scoreString);
     }

@@ -1,5 +1,5 @@
 package pasur;
 
 public interface IScoreStrategy {
-    public void updatePlayerScore(Player[] players);
+    void updatePlayerScore(Player[] players);
 }
