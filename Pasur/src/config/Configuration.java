@@ -1,5 +1,7 @@
 package config;
 
+import pasur.GameLog;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -12,6 +14,8 @@ public class Configuration
     private static final String PLAYER1_KEY = "Player1";
 
     private static Configuration configuration = null;
+
+    GameLog gamelog = new GameLog();
 
     private int seed;
     private boolean animate;
@@ -52,19 +56,20 @@ public class Configuration
 
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
-        System.out.println("#Seed: " + seed);
+
+        gamelog.writeToLog("#Seed: " + seed);
 
         // Animate
         animate = Boolean.parseBoolean(properties.getProperty(ANIMATE_KEY));
-        System.out.println("#Animate: " + animate);
+        gamelog.writeToLog("#Animate: " + animate);
 
         // Player0
         player0class = properties.getProperty(PLAYER0_KEY);
-        System.out.println("#Player0: " + player0class);
+        gamelog.writeToLog("#Player0: " + player0class);
 
         // Player1
         player1class = properties.getProperty(PLAYER1_KEY);
-        System.out.println("#Player1: " + player1class);
+        gamelog.writeToLog("#Player1: " + player1class);
     }
 
     public int getSeed()

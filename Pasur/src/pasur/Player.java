@@ -7,6 +7,7 @@ package pasur;
 
 import ch.aplu.jcardgame.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public abstract class Player
@@ -14,6 +15,7 @@ public abstract class Player
     private static final int TARGET_VALUE = 11;
 
     protected int id;
+    GameLog log = new GameLog();
     protected int score;
     protected int roundScore;
     protected int rollScore;
@@ -35,13 +37,12 @@ public abstract class Player
      * @param pool current pool
      * @return the played card and the set of cards this player wants to pick up from the pool.
      */
-    public final Map.Entry<Card, Set<Card>> playCard(Hand pool)
-    {
+    public final Map.Entry<Card, Set<Card>> playCard(Hand pool) throws IOException {
         Card playedCard = selectToPlay();
         Set<Card> cardsToPick = null;
         if(playedCard != null)
         {
-            System.out.println(toString() + " plays " + Pasur.toString(playedCard));
+            log.writeToLog(toString() + " plays " + Pasur.toString(playedCard));
 
             cardsToPick = pickCards(pool, playedCard);
         }
@@ -49,8 +50,7 @@ public abstract class Player
         return new AbstractMap.SimpleEntry<>(playedCard, cardsToPick);
     }
 
-    protected Set<Card> pickCards(Hand pool, Card playedCard)
-    {
+    protected Set<Card> pickCards(Hand pool, Card playedCard) throws IOException {
         List<Card> poolCards = pool.getCardList();
 
         Set<Card> cardsToPick = new HashSet<>();
@@ -108,9 +108,8 @@ public abstract class Player
         return cardsToPick;
     }
 
-    protected Set<Card> chooseBestCandidateSetToPick(List<Set<Card>> candidateSetsOfCardsToPick)
-    {
-        System.out.println(getPickedCards());
+    protected Set<Card> chooseBestCandidateSetToPick(List<Set<Card>> candidateSetsOfCardsToPick) throws IOException {
+        log.writeToLog(getPickedCards().toString());
         double valueGivenTo10ofDiamond = 3;
         double valueGivenTo2ofClubs = 2;
         double valueGivenToAce = 1;

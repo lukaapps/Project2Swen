@@ -21,7 +21,7 @@ public class Scoring implements IScoreStrategy, PropertyChangeListener {
 
 
     public void setValue(String scoreString){
-        this.propertyPublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);
+        propertyPublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);
     }
 
 
