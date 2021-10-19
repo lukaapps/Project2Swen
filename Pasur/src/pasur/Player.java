@@ -109,7 +109,7 @@ public abstract class Player
     }
 
     protected Set<Card> chooseBestCandidateSetToPick(List<Set<Card>> candidateSetsOfCardsToPick) throws IOException {
-        log.writeToLog(getPickedCards().toString());
+        //log.writeToLog(getPickedCards().toString());
         double valueGivenTo10ofDiamond = 3;
         double valueGivenTo2ofClubs = 2;
         double valueGivenToAce = 1;
