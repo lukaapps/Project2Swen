@@ -14,23 +14,23 @@ public class ScoreStrategy implements IScoreStrategy{
     public void updatePlayerScore(Player[] players) {
         for(int i = 0; i < players.length; i++){
             Player player = players[i];
-            ArrayList<Card> currSurs = player.getSurs().getCardList();
-            ArrayList<Card> currPicked = player.getPickedCards().getCardList();
+            ArrayList<Card> currentS = player.getSurs().getCardList();
+            ArrayList<Card> currentP = player.getPickedCards().getCardList();
 
-            int currSurScore = currSurs.size()*5;
+            int currSurScore = currentS.size()*5;
             int eachAceScore = 0;
             int eachJackScore = 0;
             int tenOfDiamond = 0;
             int twoOfClub = 0;
             int clubsCount = 0;
 
-            currPicked.addAll(currSurs);
+            currentP.addAll(currentS);
 
-            Set<Card> set = new HashSet<Card>(currPicked);
-            currPicked.clear();
-            currPicked.addAll(set);
+            Set<Card> set = new HashSet<Card>(currentP);
+            currentP.clear();
+            currentP.addAll(set);
 
-            for (Card card: currPicked){
+            for (Card card: currentP){
                 if(card.getRank().toString().equals("ACE")){
                     eachAceScore++;
                 }
@@ -65,84 +65,3 @@ public class ScoreStrategy implements IScoreStrategy{
 
     }
 }
-
-
-
-
-
-
-
-
-//
-//for(int i = 0; i < players.length; i++){
-//        Player p = players[i];
-
-//            ArrayList<Card> currSurs = player.getSurs().getCardList();
-//            ArrayList<Card> currPicked = player.getPickedCards().getCardList();
-//            int currSurScore = currSurs.size()*5;
-//            int eachAceScore = 0;
-//            int eachJackScore = 0;
-//            int tenOfDiamond = 0;
-//            int twoOfClub = 0;
-//            int clubsCount = 0;
-//
-//            currPicked.add
-//        int totalScore = 0;
-//
-//
-//        for(int j = 0; j < p.getPickedCards().getCardList().size(); j++){
-//        System.out.println("num: " + p.getPickedCards().get(j).getValue());
-//        if(p.getPickedCards().get(j).getValue() == 1 || p.getPickedCards().get(j).getValue() == 11){
-////                    p.score++;
-//        totalScore++;
-//
-//        }
-//        if(p.getPickedCards().get(j).getSuit() == Suit.CLUBS && p.getPickedCards().get(j).getValue() == 2){
-//        p.clubCount++;
-////                    p.score += 2;
-//        totalScore+=2;
-//
-//        }
-//        else if(p.getPickedCards().get(j).getSuit() == Suit.CLUBS){
-////                    p.clubCount++;
-//
-//        }
-//        if(p.getPickedCards().get(j).getSuit() == Suit.DIAMONDS && p.getPickedCards().get(j).getValue() == 10){
-////                    p.score += 3;
-//        totalScore += 3;
-//        }
-//
-//
-//        }
-//        for(int j = 0; j < players[i].getSurs().getNumberOfCards(); j++){
-//        if(p.getSurs().get(j).getValue() == 1 || p.getSurs().get(j).getValue() == 11){
-////                    p.score++;
-//        totalScore++;
-//        }
-//        if(p.getSurs().get(j).getSuit() == Suit.CLUBS && p.getSurs().get(j).getValue() == 2){
-//        p.clubCount++;
-////                    p.score += 2;
-//        totalScore++;
-//        }
-//        else if(p.getSurs().get(j).getSuit() == Suit.CLUBS){
-//        p.clubCount++;
-//        }
-//        if(p.getSurs().get(j).getSuit() == Suit.DIAMONDS && p.getSurs().get(j).getValue() == 10){
-////                    p.score += 3;
-//        totalScore += 3;
-//        }
-//        }
-//
-//        System.out.println("c: "+ p.clubCount);
-//        if(p.clubCount >= 7){
-////                p.score += 7;
-//        totalScore +=7;
-//        p.clubCount = 0;
-//        }
-//
-//        int check = p.getScore();
-//        int h = Math.max(totalScore - check, 0);
-//        System.out.println("AFD" + h);
-//        p.score += h;
-//
-//        }
