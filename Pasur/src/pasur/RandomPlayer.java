@@ -7,10 +7,12 @@ package pasur;
 
 import ch.aplu.jcardgame.Card;
 
+import java.lang.reflect.InvocationTargetException;
+
+
 public class RandomPlayer extends Player
 {
-    public RandomPlayer(int id)
-    {
+    public RandomPlayer(int id) {
         super(id);
     }
 

@@ -28,7 +28,9 @@ public class Pasur
     public static final String ON_GAME_END = "onGameEnd";
 
     // used for the simulation
-    private static final Random random = new Random(Configuration.getInstance().getSeed());
+
+    private final static Random random = new Random(Configuration.getInstance().getSeed());
+
 
     private static final int SCORE_TO_WIN = 62;
     private static final int N_HAND_CARDS = 4;
@@ -43,11 +45,9 @@ public class Pasur
     private final Player[] players;
 
 
-    private PropertyChangeSupport propertyChangePublisher = new PropertyChangeSupport(this);
+    public PropertyChangeSupport propertyChangePublisher = new PropertyChangeSupport(this);
 
-    public Pasur(int nPlayers) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException,
-            InstantiationException
-    {
+    public Pasur(int nPlayers) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         // Instantiate players
         this.nPlayers = nPlayers;
 
@@ -78,6 +78,7 @@ public class Pasur
             player.setSurs(surCards);
         }
     }
+
 
     public synchronized void pauseGame()
     {
@@ -518,4 +519,12 @@ public class Pasur
         int x = random.nextInt(hand.getNumberOfCards());
         return hand.get(x);
     }
+
+    public static Pasur getInstance() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+        return new Pasur(getInstance().nPlayers);
+    }
+
+
+
+
 }

@@ -4,6 +4,7 @@ import pasur.GameLog;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
 public class Configuration
@@ -22,8 +23,10 @@ public class Configuration
     private String player0class;
     private String player1class;
 
-    public static Configuration getInstance()
-    {
+    public Configuration() {
+    }
+
+    public static Configuration getInstance() {
         if(configuration == null)
         {
             configuration = new Configuration();

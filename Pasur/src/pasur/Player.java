@@ -8,6 +8,7 @@ package pasur;
 import ch.aplu.jcardgame.*;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public abstract class Player
@@ -25,8 +26,7 @@ public abstract class Player
     protected int surCount;
     protected int clubCount;
 
-    protected Player(int id)
-    {
+    protected Player(int id) {
         this.id = id;
         setClubCount();
         setSurCount();

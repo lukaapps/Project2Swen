@@ -49,9 +49,7 @@ public class PasurGUI implements PropertyChangeListener
 
     private Pasur pasur;
 
-    public PasurGUI() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException,
-            InstantiationException
-    {
+    public PasurGUI() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         pasur = new Pasur(2);
 
         animate = Configuration.getInstance().isAnimate();
