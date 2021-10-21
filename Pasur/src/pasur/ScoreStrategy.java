@@ -3,11 +3,13 @@ package pasur;
 
 import ch.aplu.jcardgame.Card;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ScoreStrategy implements IScoreStrategy{
+public class ScoreStrategy implements IScoreStrategy, PropertyChangeListener {
 
 
     @Override
@@ -17,12 +19,9 @@ public class ScoreStrategy implements IScoreStrategy{
             ArrayList<Card> currentS = player.getSurs().getCardList();
             ArrayList<Card> currentP = player.getPickedCards().getCardList();
 
-            int currSurScore = currentS.size()*5;
-            int eachAceScore = 0;
-            int eachJackScore = 0;
-            int tenOfDiamond = 0;
-            int twoOfClub = 0;
+            int surScore = currentS.size()*5;
             int clubsCount = 0;
+            int totalScore = 0;
 
             currentP.addAll(currentS);
 
@@ -31,19 +30,19 @@ public class ScoreStrategy implements IScoreStrategy{
             currentP.addAll(set);
 
             for (Card card: currentP){
-                if(card.getRank().toString().equals("ACE")){
-                    eachAceScore++;
+                if(card.getRank().equals(Rank.ACE)){
+                    totalScore++;
                 }
-                if(card.getRank().toString().equals("JACK")){
-                    eachJackScore++;
+                if(card.getRank().equals(Rank.JACK)){
+                    totalScore++;
                 }
-                if(card.getSuit().toString().equals("DIAMONDS") && card.getRank().toString().equals("TEN")){
-                    tenOfDiamond += 3;
+                if(card.getSuit().equals(Suit.DIAMONDS) && card.getRank().equals(Rank.TEN)){
+                    totalScore += 3;
                 }
-                if(card.getSuit().toString().equals("CLUBS") && card.getRank().toString().equals("TWO")) {
-                    twoOfClub +=2;
+                if(card.getSuit().equals(Suit.CLUBS) && card.getRank().equals(Rank.TWO)) {
+                    totalScore +=2;
                 }
-                if(card.getSuit().toString().equals("CLUBS")){
+                if(card.getSuit().equals(Suit.CLUBS)){
                     clubsCount++;
                 }
 
@@ -51,9 +50,8 @@ public class ScoreStrategy implements IScoreStrategy{
 
             int sevenOrMoreScore = clubsCount >= 7 ? 7:0;
 
-            int totalScore = currSurScore + eachAceScore + eachJackScore + tenOfDiamond + twoOfClub + sevenOrMoreScore;
 
-
+            totalScore = totalScore + sevenOrMoreScore + surScore;
             player.score = player.score + Math.max(totalScore - player.roundScore,0);
             player.setRoundScore(totalScore);
 
@@ -63,5 +61,9 @@ public class ScoreStrategy implements IScoreStrategy{
 
 
 
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
     }
 }
