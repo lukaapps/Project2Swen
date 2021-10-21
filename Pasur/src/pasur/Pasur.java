@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
 
 public class Pasur
 {
-    ScoreStrategy scoreStrategy = new ScoreStrategy();
-    Scoring scoring = new Scoring();
+    IScoreStrategy scoreStrategy = new ScoreStrategy();
     GameLog log = new GameLog();
     public static final String VERSION = "1.0";
     public static final String ON_RESET = "onReset";
