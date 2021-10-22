@@ -52,8 +52,8 @@ public class ScoreStrategy implements IScoreStrategy, PropertyChangeListener {
 
 
             totalScore = totalScore + sevenOrMoreScore + surScore;
-            player.score = player.score + Math.max(totalScore - player.roundScore,0);
-            player.setRoundScore(totalScore);
+            player.score = player.score + Math.max(totalScore - player.roundPoints,0);
+            player.setRoundPoints(totalScore);
 
 
 

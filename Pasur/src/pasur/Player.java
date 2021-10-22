@@ -18,7 +18,7 @@ public abstract class Player
     protected int id;
     GameLog log = new GameLog();
     protected int score;
-    protected int roundScore;
+    protected int roundPoints;
     protected int rollScore;
     protected Hand hand;
     protected Hand pickedCards;
@@ -236,7 +236,7 @@ public abstract class Player
         hand.removeAll(false);
         pickedCards.removeAll(false);
         surs.removeAll(false);
-        this.roundScore = 0;
+        this.roundPoints = 0;
     }
 
     public String toString()
@@ -248,19 +248,15 @@ public abstract class Player
 //        this.score = 0;
 //    }
 
-    public void setScore(int newScore){
-        roundScore = newScore;
-        this.rollScore += roundScore - rollScore;
-        this.score = rollScore;
-    }
+
 
     public int getScore()
     {
         return this.score;
     }
 
-    public void setRoundScore(int rScore){
-        this.roundScore = rScore;
+    public void setRoundPoints(int rScore){
+        this.roundPoints = rScore;
     }
 
     abstract Card selectToPlay();
